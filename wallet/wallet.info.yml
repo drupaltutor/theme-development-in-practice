@@ -5,6 +5,10 @@ core_version_requirement: '^9.4 || ^10'
 'base theme': bootstrap5
 libraries:
   - wallet/global-styling
+  - wallet/font-awesome
+  - wallet/scrollmenu
+  - wallet/slick
+  - wallet/global-scripts
 ckeditor_stylesheets:
   - css/style.css
 ckeditor5-stylesheets:
