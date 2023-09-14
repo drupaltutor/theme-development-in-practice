@@ -5,14 +5,14 @@
  * GITHUB: https://github.com/themefisher/
  */
 
-// Preloader js
-$(window).on("load", function () {
-  "use strict";
-  $(".preloader").fadeOut(0);
-});
-
 (function ($) {
   "use strict";
+
+  // Preloader js
+  $(window).on("load", function () {
+    "use strict";
+    $(".preloader").fadeOut(0);
+  });
 
   // tab
   $(".tab-content")
