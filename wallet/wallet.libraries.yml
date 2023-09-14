@@ -2,3 +2,37 @@ global-styling:
   css:
     theme:
       css/style.css: {}
+
+font-awesome:
+  version: 5.15.3
+  css:
+    theme:
+      plugins/font-awesome/fontawesome.min.css: {  }
+      plugins/font-awesome/brands.css: {  }
+      plugins/font-awesome/solid.css: {  }
+
+slick:
+  version: 1.x
+  css:
+    theme:
+      plugins/slick/slick.css: {  }
+  js:
+    plugins/slick/slick.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+
+scrollmenu:
+  version: 1.x
+  js:
+    plugins/scrollmenu/scrollmenu.min.js: { minified: true }
+
+global-scripts:
+  version: 1.x
+  js:
+    js/script.js: { }
+  dependencies:
+    - core/jquery
+    - core/once
+    - wallet/scrollmenu
+    - wallet/slick
+
