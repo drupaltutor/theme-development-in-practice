@@ -20,13 +20,13 @@
 #}
 {% if items %}
   {% for item in items %}
-    {%
+    {%-
       set classes_link = [
         'btn',
          loop.last ? 'btn-primary' : 'btn-outline-primary',
          not loop.first ? 'ms-2 ms-lg-3',
       ]
-    %}
-    {{ link(item.title, item.url, { 'class': classes_link }) }}
+    -%}
+    {{- link(item.title, item.url, { 'class': classes_link }) -}}
   {% endfor %}
 {% endif %}
