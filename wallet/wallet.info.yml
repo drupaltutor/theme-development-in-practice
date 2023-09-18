@@ -9,6 +9,7 @@ libraries:
   - wallet/scrollmenu
   - wallet/slick
   - wallet/global-scripts
+  - wallet/fonts
 ckeditor_stylesheets:
   - css/style.css
 ckeditor5-stylesheets:

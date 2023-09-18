@@ -36,3 +36,8 @@ global-scripts:
     - wallet/scrollmenu
     - wallet/slick
 
+fonts:
+  version: 1.x
+  css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap: { external: true }
