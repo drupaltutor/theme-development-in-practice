@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+<div{{ attributes.addClass('footer-branding col-lg-4') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  <a href="{{ path('<front>') }}">
+    {% if site_logo %}
+      <img loading="preload" decoding="async" class="img-fluid" width="160" src="{{ site_logo }}" alt="{{ 'Home'|t }}">
+    {% endif %}
+    {% if site_name %}
+      {{ site_name }}
+    {% endif %}
+  </a>
+</div>
