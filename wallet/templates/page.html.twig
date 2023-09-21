@@ -50,7 +50,7 @@ set nav_classes = 'navbar navbar-expand-xl navbar-light text-center py-3' ~
 %}
 
 {%
-set footer_classes = ' ' ~
+set footer_classes = 'section-lg bg-tertiary' ~
   (b5_footer_schema != 'none' ? " footer-#{b5_footer_schema}" : ' ') ~
   (b5_footer_schema != 'none' ? (b5_footer_schema == 'dark' ? ' text-light' : ' text-dark' ) : ' ') ~
   (b5_footer_bg_schema != 'none' ? " bg-#{b5_footer_bg_schema}" : ' ')
