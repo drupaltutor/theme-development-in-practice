@@ -4,3 +4,11 @@
  * @file
  * Wallet theme file.
  */
+
+function wallet_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['elements']['#id'])) {
+    $block = \Drupal\block\Entity\Block::load($variables['elements']['#id']);
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#base_plugin_id'] . '__' . $block->getRegion();
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#base_plugin_id'] . '__' . $variables['elements']['#id'] . '__' . $block->getRegion();
+  }
+}
