@@ -34,14 +34,11 @@
 #}
 {%
   set classes = [
-    'block',
-    'block-menu',
-    'navigation',
-    'menu--' ~ derivative_plugin_id|clean_class,
-  ]
+  'col-lg-4 col-md-6 mt-4 mt-lg-0'
+]
 %}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
+<div role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
@@ -54,4 +51,4 @@
   {% block content %}
     {{ content }}
   {% endblock %}
-</nav>
+</div>
