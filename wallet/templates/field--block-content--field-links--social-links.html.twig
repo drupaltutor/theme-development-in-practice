@@ -39,43 +39,31 @@
 #}
 {%
   set classes = [
-    'field',
-    'field--name-' ~ field_name|clean_class,
-    'field--type-' ~ field_type|clean_class,
-    'field--label-' ~ label_display,
-    label_display == 'inline' ? 'clearfix',
-  ]
+  'list-unstyled list-inline mb-0 social-icons'
+]
 %}
 {%
   set title_classes = [
-    'field__label',
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
+  'field__label',
+  label_display == 'visually_hidden' ? 'visually-hidden',
+]
 %}
 
-{% if label_hidden %}
-  {% if multiple %}
-    <div{{ attributes.addClass(classes, 'field__items') }}>
-      {% for item in items %}
-        <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
-      {% endfor %}
-    </div>
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
-    {% endfor %}
-  {% endif %}
-{% else %}
-  <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-    {% if multiple %}
-      <div class="field__items">
-    {% endif %}
-    {% for item in items %}
-      <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
-    {% endfor %}
-    {% if multiple %}
-      </div>
-    {% endif %}
-  </div>
-{% endif %}
+<ul{{ attributes.addClass(classes) }}>
+  {% for item in items %}
+    <li{{ item.attributes.addClass('list-inline-item me-3') }}>
+      {% set url = item.content['#url'].toString %}
+      <a class="text-black" href="{{ url }}">
+        {% if 'facebook' in url %}
+          <i class="fab fa-facebook-f"></i>
+        {% elseif 'instagram' in url %}
+          <i class="fab fa-instagram"></i>
+        {% elseif 'twitter' in url %}
+          <i class="fab fa-twitter"></i>
+        {% else %}
+          <i class="fa fa-box"></i>
+        {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
