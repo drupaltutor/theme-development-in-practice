@@ -94,20 +94,23 @@
           {% endif %}
           {{ title_suffix }}
 
-  {% if display_submitted %}
-    <footer class="node__meta">
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
+          {% if display_submitted %}
+            <span>{{ node.getCreatedTime | format_date('custom', 'j F Y') }}
+              {% if content.field_tags.0 %}
+                <span class="mx-2">/</span>
+              {% endif %}
+            </span>
+          {% endif %}
+
+          {% if content.field_tags %}
+            {{ content.field_tags }}
+          {% endif %}
+        </div>
 
   <div{{ content_attributes.addClass('node__content') }}>
     {{ content }}
   </div>
-        </div>
+
       </div>
     </div>
   </div>
