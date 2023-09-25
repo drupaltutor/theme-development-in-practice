@@ -28,10 +28,13 @@
 #}
 {%
   set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-  ]
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  'col-lg-4',
+  'col-md-12',
+  'newsletter-form',
+]
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
