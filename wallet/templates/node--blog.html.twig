@@ -75,18 +75,24 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'section',
   ]
 %}
 {{ attach_library('bootstrap5/node') }}
 <article{{ attributes.addClass(classes) }}>
-
-  {{ title_prefix }}
-  {% if label and not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="mb-5">
+          {{ title_prefix }}
+          {% if label and not page %}
+            <h2{{ title_attributes }}>
+              <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+            </h2>
+          {% elseif label %}
+            <h1 class="mb-4" style="line-height:1.5">{{ label }}</h1>
+          {% endif %}
+          {{ title_suffix }}
 
   {% if display_submitted %}
     <footer class="node__meta">
@@ -101,5 +107,8 @@
   <div{{ content_attributes.addClass('node__content') }}>
     {{ content }}
   </div>
-
+        </div>
+      </div>
+    </div>
+  </div>
 </article>
