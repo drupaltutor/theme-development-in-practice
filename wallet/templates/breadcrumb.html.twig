@@ -8,18 +8,24 @@
  */
 #}
 {% if breadcrumb %}
+  <style>
+    .breadcrumbs li:nth-child(n+2):before {
+      content: "/";
+      margin-right: 0.5em;
+    }
+  </style>
   <nav aria-label="breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ol class="breadcrumb">
-    {% for item in breadcrumb %}
-      <li class="breadcrumb-item">
-        {% if item.url %}
-          <a href="{{ item.url }}">{{ item.text }}</a>
-        {% else %}
-          {{ item.text }}
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ol>
+    <ul class="list-inline breadcrumbs text-capitalize" style="font-weight:500;">
+      {% for item in breadcrumb %}
+        <li class="list-inline-item">
+          {% if item.url %}
+            <a href="{{ item.url }}">{{ item.text }}</a>
+          {% else %}
+            {{ item.text }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </nav>
 {% endif %}
