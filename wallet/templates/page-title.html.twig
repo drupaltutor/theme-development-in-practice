@@ -12,8 +12,10 @@
  *   displayed after the main title tag that appears in the template.
  */
 #}
-{{ title_prefix }}
-{% if title|render|striptags|trim %}
-<h1{{title_attributes}}>{{ title }}</h1>
+{% if title %}
+  {{ title_prefix }}
+  {% if title|render|striptags|trim %}
+    <h1{{title_attributes.addClass(['mb-3', 'text-capitalize'])}}>{{ title }}</h1>
+  {% endif %}
+  {{ title_suffix }}
 {% endif %}
-{{ title_suffix }}
