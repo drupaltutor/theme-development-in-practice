@@ -99,21 +99,28 @@ set footer_classes = 'section-lg bg-tertiary' ~
     {{ page.breadcrumb }}
   {% endif %}
   <div class="{{ b5_top_container }}">
-    <div class="row g-0">
-      {% if page.sidebar_first %}
-        <div class="order-2 order-lg-1 {{ sidebar_first_classes }}">
-          {{ page.sidebar_first }}
+    {% if page.sidebar %}
+      <section class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 {{ content_classes }}">
+              <div class="me-lg-4">
+                {{ page.content }}
+              </div>
+            </div>
+            <div class="col-lg-3">
+              {{ page.sidebar }}
+            </div>
+          </div>
         </div>
-      {% endif %}
-      <div class="order-1 order-lg-2 {{ content_classes }}">
-        {{ page.content }}
+      </section>
+    {% else %}
+      <div class="row g-0">
+        <div class="{{ content_classes }}">
+          {{ page.content }}
+        </div>
       </div>
-      {% if page.sidebar_second %}
-        <div class="order-3 {{ sidebar_second_classes }}">
-          {{ page.sidebar_second }}
-        </div>
-      {% endif %}
-    </div>
+    {% endif %}
   </div>
 
 </main>

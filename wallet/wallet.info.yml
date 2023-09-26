@@ -21,8 +21,7 @@ regions:
   nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
   breadcrumb: Breadcrumbs
   content: 'Main content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
+  sidebar: 'Sidebar'
   footer: Footer
   closure: Closure
 libraries-override:
