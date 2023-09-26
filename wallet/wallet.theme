@@ -12,3 +12,14 @@ function wallet_theme_suggestions_block_alter(array &$suggestions, array $variab
     $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#base_plugin_id'] . '__' . $variables['elements']['#id'] . '__' . $block->getRegion();
   }
 }
+
+function wallet_preprocess_media(&$variables) {
+  $view_mode = $variables['elements']['#view_mode'];
+  $media = $variables['elements']['#media'];
+  $bundle = $media->bundle();
+  if ($bundle === 'image' && $view_mode === 'list') {
+    if (!empty($variables['content']['field_media_image'][0])) {
+      $variables['content']['field_media_image'][0]['#item_attributes']['class'][] = 'rounded';
+    }
+  }
+}
