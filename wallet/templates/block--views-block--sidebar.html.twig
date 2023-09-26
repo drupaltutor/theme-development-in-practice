@@ -28,15 +28,17 @@
 #}
 {%
   set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-  ]
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  not label ? 'block-no-label',
+  'widget',
+]
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h4{{ title_attributes.addClass('widget-title') }}>{{ label }}</h4>
   {% endif %}
   {{ title_suffix }}
   {% block content %}
