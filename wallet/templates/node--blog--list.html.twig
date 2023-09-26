@@ -69,57 +69,32 @@
 #}
 {%
   set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'section',
-  ]
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
 %}
-{{ attach_library('bootstrap5/node') }}
-<article{{ attributes.addClass(classes) }}>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="mb-5">
-          {{ title_prefix }}
-          {% if label and not page %}
-            <h2{{ title_attributes }}>
-              <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-            </h2>
-          {% elseif label %}
-            <h1 class="mb-4" style="line-height:1.5">{{ label }}</h1>
-          {% endif %}
-          {{ title_suffix }}
-
-          {% if display_submitted %}
-            <span>{{ node.getCreatedTime | format_date('custom', 'j F Y') }}
-              {% if content.field_tags.0 %}
-                <span class="mx-2">/</span>
-              {% endif %}
-            </span>
-          {% endif %}
-
-          {% if content.field_tags %}
-            {{ content.field_tags }}
-          {% endif %}
+{{ attach_library('wallet/node') }}
+<ul{{ attributes.addClass(classes).addClass('list-unstyled widget-list') }}>
+  <li class="d-flex widget-post align-items-center">
+    <a class="text-black" href="{{ url }}">
+      {% if content.field_images.0 %}
+        <div class="widget-post-image flex-shrink-0 me-3">
+          {{ content.field_images.0 }}
         </div>
-
-        {% if content.field_images %}
-          <div class="mb-5 text-center">
-            <div class="post-slider rounded overflow-hidden">
-              {{ content.field_images }}
-            </div>
-          </div>
-        {% endif %}
-
-        <div{{ content_attributes.addClass('node__content', 'content') }}>
-          {{ content | without('field_tags', 'field_images') }}
-        </div>
-
-      </div>
+      {% endif %}
+    </a>
+    <div class="flex-grow-1">
+      {{ title_prefix }}
+      {% if label %}
+        <h5{{ title_attributes.addClass('h6', 'mb-0') }}>
+          <a class="text-black" href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h5>
+      {% endif %}
+      <small>{{ node.getCreatedTime | format_date('custom', 'F j, Y') }}</small>
     </div>
-  </div>
-</article>
+  </li>
+</ul>
