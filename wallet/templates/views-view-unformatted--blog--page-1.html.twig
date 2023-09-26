@@ -21,10 +21,11 @@
 {% for row in rows %}
   {%
     set row_classes = [
-      default_row_class ? 'views-row',
-    ]
+    default_row_class ? 'views-row',
+    'col-md-6',
+  ]
   %}
-  <div{{ row.attributes.addClass(row_classes) }}>
+  <div{{ row.attributes.addClass(row_classes).setAttribute('data-aos', 'fade') }}>
     {{- row.content -}}
   </div>
 {% endfor %}
