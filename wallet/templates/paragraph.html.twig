@@ -40,16 +40,27 @@
 #}
 {%
   set classes = [
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
-  ]
+  'section',
+  paragraph.field_padding ? 'section-' ~ paragraph.field_padding.value,
+  paragraph.field_alignment ? 'text-align-' ~ paragraph.field_alignment.value,
+  paragraph.field_background_color ? 'bg-' ~ paragraph.field_background_color.value,
+]
 %}
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </div>
+  <section{{ attributes.addClass(classes) }}>
+    <div class="container">
+      {% block title %}
+        {% if content.field_preface %}
+          {{ content.field_preface }}
+        {% endif %}
+        {% if content.field_title %}
+          {{ content.field_title }}
+        {% endif %}
+      {% endblock %}
+      {% block content %}
+        {{ content | without('field_preface', 'field_title', 'field_background_shapes') }}
+      {% endblock %}
+    </div>
+    {{ content.field_background_shapes }}
+  </section>
 {% endblock paragraph %}
