@@ -23,3 +23,13 @@ function wallet_preprocess_media(&$variables) {
     }
   }
 }
+
+
+function wallet_preprocess_field(&$variables) {
+  if ($variables['field_name'] === 'field_call_to_action') {
+    foreach ($variables['items'] as $delta => $item) {
+      $variables['items'][$delta]['content']['#options']['attributes']['class'][] = 'btn';
+      $variables['items'][$delta]['content']['#options']['attributes']['class'][] = 'btn-primary';
+    }
+  }
+}
