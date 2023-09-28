@@ -12,17 +12,31 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'media',
-    'media--type-' ~ media.bundle()|clean_class,
-    not media.isPublished() ? 'media--unpublished',
-    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
-<article{{ attributes.addClass(classes) }}>
-  {{ title_suffix.contextual_links }}
-  {% if content %}
-    {{ content }}
-  {% endif %}
-</article>
+{% set media = elements['#media'] %}
+{% set video_url = media.field_media_oembed_video.value %}
+{% set video_thumbnail = content.thumbnail.0['#markup'] %}
+<div class="has-video-popup position-relative">
+  <img loading="lazy" decoding="async" src="{{ video_thumbnail }}" alt="{{ name }}" class="rounded-lg w-100">
+  <button type="button" class="video-play-btn border-0 bg-transparent" data-bs-toggle="modal" data-src="{{ video_url }}" data-bs-target="#videoModal{{ media.id }}">
+    <svg class="text-primary" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="45" cy="45" r="45" fill="currentColor" fill-opacity="0.4"></circle>
+      <circle cx="44.9995" cy="45" r="37.437" fill="currentColor"></circle>
+      <path d="M58.2354 44.9999L38.3824 56.462L38.3824 33.5378L58.2354 44.9999Z" fill="white"></path>
+    </svg>
+  </button>
+</div>
+<div class="video-modal modal fade rounded overflow-hidden" id="videoModal{{ media.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content border-0">
+      <div class="text-center p-3">
+        <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9 rounded-bottom overflow-hidden">
+          {{ content.field_media_oembed_video }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
