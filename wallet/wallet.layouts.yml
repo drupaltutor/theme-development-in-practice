@@ -1,0 +1,13 @@
+two_column_real:
+  label: 'Two columns (for real)'
+  category: 'Columns: 2'
+  path: layouts
+  template: layout--two-column-real
+  default_region: first
+  regions:
+    first:
+      label: First Item
+    second:
+      label: Second Item
+  icon_map:
+    - [first, second]
