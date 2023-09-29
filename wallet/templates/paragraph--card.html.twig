@@ -38,29 +38,26 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-  'section',
-  paragraph.field_padding ? 'section-' ~ paragraph.field_padding.value,
-  paragraph.field_alignment ? 'text-align-' ~ paragraph.field_alignment.value,
-  paragraph.field_background_color ? 'bg-' ~ paragraph.field_background_color.value,
-]
-%}
+{% set paragraph = elements['#paragraph'] %}
+{% set icon_bg_color =  content.field_icon_background_color[0]['#markup'] %}
+{% set icon_color =  content.field_icon_foreground_color[0]['#markup'] %}
+{% set card_url = paragraph.field_card_link.get(0).getUrl().toString() %}
 {% block paragraph %}
-  <section{{ attributes.addClass(classes) }}>
-    <div class="container">
-      {% block title %}
-        {% if content.field_preface %}
-          {{ content.field_preface }}
-        {% endif %}
-        {% if content.field_title %}
-          {{ content.field_title }}
-        {% endif %}
-      {% endblock %}
-      {% block content %}
-        {{ content | without('field_preface', 'field_title', 'field_background_shapes') }}
-      {% endblock %}
-    </div>
-    {{ content.field_background_shapes }}
-  </section>
+  <div class="block text-align-left">
+    {% if card_url %}
+    <a href="{{ card_url }}">
+      {% endif %}
+      {% if content.field_icon %}
+        <span class="icon text-center h3 mb-4" style="background-color: {{ icon_bg_color }};color: {{ icon_color }};">{{ content.field_icon }}</span>
+      {% endif %}
+      {% if content.field_card_title %}
+        <h3 class="mb-3">{{ content.field_card_title }}</h3>
+      {% endif %}
+      {% if content.field_card_text %}
+        {{ content.field_card_text }}
+      {% endif %}
+      {% if card_url %}
+    </a>
+    {% endif %}
+  </div>
 {% endblock paragraph %}
