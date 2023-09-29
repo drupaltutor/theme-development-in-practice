@@ -49,17 +49,26 @@
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
     <div class="container">
-      {% block title %}
-        {% if content.field_preface %}
-          {{ content.field_preface }}
+      <div class="row">
+        {% if content.field_preface or content.field_title or content.field_text %}
+          <div class="col-lg-4 col-md-6">
+            <div class="section-title pt-4">
+              {% if content.field_preface %}
+                {{ content.field_preface }}
+              {% endif %}
+              {% if content.field_title %}
+                {{ content.field_title }}
+              {% endif %}
+              {% if content.field_text %}
+                {{ content.field_text }}
+              {% endif %}
+            </div>
+          </div>
         {% endif %}
-        {% if content.field_title %}
-          {{ content.field_title }}
-        {% endif %}
-      {% endblock %}
-      {% block content %}
-        {{ content | without('field_preface', 'field_title', 'field_background_shapes') }}
-      {% endblock %}
+        {% block content %}
+          {{ content | without('field_preface', 'field_title', 'field_background_shapes', 'field_text') }}
+        {% endblock %}
+      </div>
     </div>
     {{ content.field_background_shapes }}
   </section>
