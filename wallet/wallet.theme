@@ -33,3 +33,9 @@ function wallet_preprocess_field(&$variables) {
     }
   }
 }
+
+function wallet_preprocess_webform_actions(&$variables) {
+  foreach (\Drupal\Core\Render\Element::children($variables['element']) as $key) {
+    $variables['element'][$key]['#attributes']['class'][] = 'w-100';
+  }
+}
