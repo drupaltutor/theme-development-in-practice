@@ -39,3 +39,14 @@ function wallet_preprocess_webform_actions(&$variables) {
     $variables['element'][$key]['#attributes']['class'][] = 'w-100';
   }
 }
+
+function wallet_preprocess_page(&$variables) {
+  $variables['hide_title'] = FALSE;
+  if (\Drupal::routeMatch()->getRouteName() === 'entity.node.canonical') {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node->hasField('field_hide_title') && !empty($node->get('field_hide_title')->value)) {
+      $variables['hide_title'] = TRUE;
+    }
+  }
+}
