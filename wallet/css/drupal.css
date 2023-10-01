@@ -1,0 +1,28 @@
+.placeholder {
+  background: transparent;
+}
+.lpb-enable__wrapper .lpb-enable {
+  z-index: 10;
+}
+.tabs-primary .dropdown-toggle {
+  display: none;
+}
+.ui-dialog-content .form-group label {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0;
+  background-color: transparent;
+}
+#media-library-wrapper {
+  display: flex;
+  gap: 2em;
+}
+.js-media-library-menu li {
+  list-style: none;
+}
+.js-media-library-views-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+}
